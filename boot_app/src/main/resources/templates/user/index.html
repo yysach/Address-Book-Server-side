@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org"  th:replace="user/base::layout(~{::section})">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dashboard</title>
+    <link rel="stylesheet" th:href="@{/css/style.css}">
+</head>
+<body>
+    <section>
+        <div class="container">
+            <div class="card">
+                <div class="card-body">
+                    <div th:if="${session.message}" th:classappend="${session.message.type}" class="alert text-center">
+                        <span th:text="${session.message.content}"></span>
+                        <th:block th:text="${#session.removeAttribute('message')}"></th:block>
+                    </div>
+                    <h1>This is Dashboard <span th:text="${user.username}"></span></h1>
+                </div>
+            </div>
+            
+        </div>
+    </section>
+    <script th:src="@{/js/script.js}"></script>
+</body>
+</html>

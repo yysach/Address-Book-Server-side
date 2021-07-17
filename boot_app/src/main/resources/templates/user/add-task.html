@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org"  th:replace="user/base::layout(~{::section})">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dashboard</title>
+    <link rel="stylesheet" th:href="@{/css/style.css}">
+</head>
+<body>
+    <section>
+      <div class="card">
+
+        <!-- session message -->
+        <div th:if="${session.message}" th:classappend="${session.message.type}" class="alert text-center">
+            <span th:text="${session.message.content}"></span>
+            <th:block th:text="${#session.removeAttribute('message')}"></th:block>
+        </div>
+        
+          <div class="card-body">
+            <h1>Add Task</h1>
+            <div class="container-fluid">
+                    <table style="width: 100%;">
+                        <form th:action="@{/user/process_task}" th:object="${task}" method="POST">
+                            <tr>
+                                <td>Title:</td>
+                                <td><input type="text" id="title" th:value="${task.title}" name="title"></td>
+                            </tr>
+                            <tr>
+                                <td>Description:</td>
+                                <td><textarea id="description" name="description" th:text="${task.description}"></textarea></td>
+                            </tr>
+                            <tr>
+                                <td><input type="submit" value="Add"></td>
+                            </tr>
+                        </form>
+                    </table>
+            </div>
+          </div>
+      </div>
+    </section>
+
+    <script th:src="@{/js/script.js}"></script>
+    
+</body>
+</html>

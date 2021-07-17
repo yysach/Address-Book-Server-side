@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org"  th:replace="user/base::layout(~{::section})">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dashboard</title>
+    <link rel="stylesheet" th:href="@{/css/style.css}">
+</head>
+<body>
+    <section>
+        <div class="container">
+            <div class="card">
+              <div class="card-body">
+                <h2>Tasks</h2>
+                  <table class="table">
+                      <thead class="thead-dark">
+                        <tr>
+                          <th scope="col">#</th>
+                          <th scope="col">Title</th>
+                          <th scope="col">Description</th>
+                          <th scope="col">Action</th>
+                        </tr>
+                      </thead>
+                      <tbody>
+                        <tr th:each="t,status : ${tasks}">
+                          <th scope="row" th:text="${status.count}"></th>
+                          <td th:text="${t.title}"></td>
+                          <td th:text="${t.description}"></td>
+                          <td><a th:onclick="|deleteTask(${t.id})|"><button type="button">delete</button></a></td>
+                        </tr>
+                      </tbody>
+                    </table>
+              </div>
+          </div>
+        </div>
+    </section>
+    <script th:src="@{/js/script.js}"></script>
+    
+</body>
+</html>
